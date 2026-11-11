@@ -60,6 +60,14 @@ def apply_theme():
             min-height: 84px;
         }}
 
+        .app-logo {{
+            height: 58px !important;
+            width: auto !important;
+            object-fit: contain !important;
+            flex-shrink: 0 !important;
+            display: block !important;
+        }}
+
         .app-nav-group {{
             display: flex !important;
             flex-direction: row !important;
@@ -178,14 +186,21 @@ def apply_theme():
                 min-height: 62px !important;
                 border-radius: 18px !important;
             }}
+
             .app-nav-icon {{
                 font-size: 24px !important;
             }}
+
             .app-nav-label {{
                 font-size: 10px !important;
             }}
+
             .app-nav-group {{
                 gap: 3px !important;
+            }}
+
+            .app-logo {{
+                height: 50px !important;
             }}
         }}
 
@@ -193,6 +208,7 @@ def apply_theme():
             .app-header {{
                 min-height: 70px;
             }}
+
             .app-nav {{
                 width: 54px !important;
                 min-width: 54px !important;
@@ -200,14 +216,21 @@ def apply_theme():
                 min-height: 56px !important;
                 border-radius: 16px !important;
             }}
+
             .app-nav-icon {{
                 font-size: 21px !important;
             }}
+
             .app-nav-label {{
                 font-size: 9px !important;
             }}
+
             .app-nav-group {{
                 gap: 1px !important;
+            }}
+
+            .app-logo {{
+                height: 42px !important;
             }}
         }}
     </style>
@@ -256,7 +279,6 @@ def nav_item(icon, label, route, active=False):
         'click',
         lambda: ui.navigate.to(route)
     ):
-        # Usamos ui.icon directamente y luego el label, ambos dentro del div
         ui.icon(icon).classes('app-nav-icon')
         ui.label(label).classes('app-nav-label')
 
@@ -272,9 +294,7 @@ def app_header(title: str):
         'dark:border-gray-800 shadow-sm'
     ):
 
-        ui.label(title).classes(
-            'text-xl font-bold tracking-tight shrink-0'
-        )
+        ui.image('/static/logo_unal.png').classes('app-logo')
 
         ui.space()
 
@@ -298,23 +318,25 @@ def app_header(title: str):
                 '/myprofile'
             )
 
-            # Chat con badge
             with ui.element('div').classes('app-nav').on(
                 'click',
                 lambda: ui.navigate.to('/chat')
             ):
                 ui.icon('chat_bubble').classes('app-nav-icon')
                 ui.label('Chat').classes('app-nav-label')
-                chat_badge = ui.badge('').classes('app-nav-badge hidden')
+                chat_badge = ui.badge('').classes(
+                    'app-nav-badge hidden'
+                )
 
-            # Avisos con badge
             with ui.element('div').classes('app-nav').on(
                 'click',
                 lambda: ui.navigate.to('/notifications')
             ):
                 ui.icon('notifications').classes('app-nav-icon')
                 ui.label('Avisos').classes('app-nav-label')
-                notif_badge = ui.badge('').classes('app-nav-badge hidden')
+                notif_badge = ui.badge('').classes(
+                    'app-nav-badge hidden'
+                )
 
             nav_item(
                 'settings',

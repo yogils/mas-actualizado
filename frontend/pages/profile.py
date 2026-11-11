@@ -98,8 +98,16 @@ def profile_nav(active):
         with ui.row().classes(
             "w-full items-center px-4 md:px-7 py-2"
         ):
+            ui.image(
+                "/static/logo_unal.png"
+            ).classes(
+                "h-14 w-auto object-contain shrink-0"
+            )
+
+            ui.space()
+
             with ui.row().classes(
-                "items-center gap-2 ml-auto mr-3 shrink-0"
+                "items-center gap-2 mr-3 shrink-0"
             ):
                 top_button(
                     "home_rounded",
